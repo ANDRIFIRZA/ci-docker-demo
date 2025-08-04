@@ -1,6 +1,6 @@
-FROM alpine:latest
+FROM ubuntu:22.04
 
-RUN apk add --no-cache cowsay
+RUN apt-get update && apt-get install -y cowsay
 
 ENTRYPOINT ["cowsay"]
-CMD ["CI/CD with Docker is working!"]
+
