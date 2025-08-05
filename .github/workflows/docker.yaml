@@ -1,0 +1,24 @@
+name: Build and Test Docker Image
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout source code
+      uses: actions/checkout@v3
+
+    - name: Build Docker image
+      run: docker build -t ci-docker-demo .
+
+    - name: Run Docker container
+      run: docker run ci-docker-demo "Hello dari GitHub Actions"
+
+    - name: Optional: Print container output
+      run: |
+        OUTPUT=$(docker run ci-docker-demo "CI berhasil!")
+        echo "Output dari container: $OUTPUT"
